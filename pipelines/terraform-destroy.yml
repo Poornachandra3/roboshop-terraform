@@ -1,0 +1,45 @@
+format_version: 10
+pipelines:
+  roboshop-tf-destroy:
+    group: Terraform
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      git-36887ae:
+        git: https://github.com/Poorna32/roboshop-terraform.git
+        shallow_clone: false
+        auto_update: true
+        branch: main
+    secure_variables:
+      TF_VAR_vault_token: AES:IsBYAm5FqkgJcOHm4xGpZA==:5hWQOBgpXckItg7rgH3cag2p/EOEghfLRxh3XPc7m5E=
+    stages:
+      - DEV:
+          fetch_materials: true
+          keep_artifacts: false
+          clean_workspace: false
+          environment_variables:
+            env: dev
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+            terraform-apply:
+              tasks:
+              - exec: { command: terraform, arguments: [ "init" , "-backend-config=env-dev/state.tfvars" ] ,run_if: passed}
+              - exec: { command: terraform, arguments: [ "destroy" , "-auto-approve" ] ,run_if: passed}
+#
+#      - PROD:
+#          fetch_materials: true
+#          keep_artifacts: false
+#          clean_workspace: false
+#          environment_variables:
+#            env: prod
+#          approval:
+#            type: success
+#            allow_only_on_success: false
+#          jobs:
+#            terraform-apply:
+#              tasks:
+#                - exec: { command: terraform, arguments: [ "init" , "-backend-config=env-prod/state.tfvars" ] ,run_if: passed}
+#                - exec: { command: terraform, arguments: [ "destroy" , "-var-file=env-prod/main.tfvars", "-auto-approve" ] ,run_if: passed}
