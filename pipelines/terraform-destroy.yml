@@ -7,7 +7,7 @@ pipelines:
     display_order: -1
     materials:
       git-36887ae:
-        git: https://github.com/Poorna32/roboshop-terraform.git
+        git: https://github.com/Poornachandra3/roboshop-terraform.git
         shallow_clone: false
         auto_update: true
         branch: main
