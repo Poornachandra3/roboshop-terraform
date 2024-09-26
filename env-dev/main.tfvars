@@ -23,3 +23,8 @@ kms_key_id           = "arn:aws:kms:us-east-1:976739212096:key/3f9273f6-8de5-45d
 #ASG
 max_capacity = 5
 min_capacity = 1
+
+docdb_family         = "docdb4.0"
+docdb_instance_class = "db.t3.medium"
+docdb_instance_count = 1
+docdb_engine_version = "4.0.0"
