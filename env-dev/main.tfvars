@@ -54,3 +54,11 @@ rabbitmq = {
     instance_type = "t3.small"
   }
 }
+
+elasticache = {
+  main = {
+    engine_version          = "6.2"
+    family                  = "redis6.x"
+    node_type               = "cache.t4g.micro"
+  }
+}
