@@ -47,3 +47,10 @@ rds = {
     storage_type        = "gp3"
   }
 }
+
+rabbitmq = {
+  main = {
+    component     = "rabbitmq"
+    instance_type = "t3.small"
+  }
+}
